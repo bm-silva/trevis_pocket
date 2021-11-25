@@ -2,7 +2,7 @@ import os
 import argparse
 
 parser = argparse.ArgumentParser(description = 'A Tool for Transcriptome REsults VISualization (TREVIS)', add_help=False)
-parser.add_argument('-e', '--exemple', help='Run an demonstration database', required=True)
+parser.add_argument('-e', '--exemple', help='Run an demonstration database', required=False)
 arguments = parser.parse_args()
 
 
