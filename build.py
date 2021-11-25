@@ -39,6 +39,7 @@ def run_trevis():
     # edit the report file
     cmd = "python3 scripts/prepare_file.py \
         -f trinotate_annotation.xls -o trinotate_annotation_limpo.xls"
+    os.system(cmd)
     # import the report file to the annotation column
     cmd = "import_transcript_names.pl Trinotate.sqlite trinotate_annotation_limpo.xls"
     os.system(cmd)
