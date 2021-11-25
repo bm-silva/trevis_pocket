@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {%block head%}
+<title>Getting Transcripts Annotations</title>
+{% endblock %} {%block body%}
+
+<div id="header">
+  <h3>Get Genes and Transcripts Annotations</h3>
+  <br />
+  <div class="form-inline">
+    <label class="radio-inline" for="idtextarea"> Type text to seach: </label>
+    <div class="mx-sm-3">
+      <input
+        class="form-control form-control-sm"
+        id="idtextarea"
+        placeholder="Exemple: Transporter"
+      />
+    </div>
+    <div class="mx-sm-3">
+      <button onclick="btnGetAnnotations()" class="btn btn-secondary">
+        Search!
+      </button>
+    </div>
+  </div>
+</div>
+<br />
+<div id="divgetannotations">
+  <table id="getannotations" class="display">
+    <thead>
+      <tr>
+        <th>Gene ID</th>
+        <th>Transcript ID</th>
+        <th>Annotation</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+{% endblock %}

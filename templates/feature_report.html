@@ -1,0 +1,185 @@
+{% extends 'base.html' %} {%block head%}
+<title>Feature Report</title>
+<link
+  rel="stylesheet"
+  href="https://www.canvasxpress.org/dist/canvasXpress.css"
+  type="text/css"
+/>
+<script
+  type="text/javascript"
+  src="https://www.canvasxpress.org/dist/canvasXpress.min.js"
+></script>
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename='canvasxpress.js') }}"
+></script>
+{% endblock %} {%block body%}
+<h3 style="padding-left: 15px">Annotation information</h3>
+<br />
+<div class="form-inline" style="padding-left: 15px">
+  <div class="form-group">
+    <label class="form-inline" for="species">Species: </label>
+    <div class="mx-sm-3">
+      <select class="form-control form-control-sm" id="species" name="species">
+        <option selected>Choose...</option>
+        <option style="font-style: italic" value="aaegypti">
+          Aedes aegypti
+        </option>
+        <option style="font-style: italic" value="amellifera">
+          Apis mellifera
+        </option>
+        <option style="font-style: italic" value="athaliana">
+          Arabidopsis thaliana
+        </option>
+        <option style="font-style: italic" value="creinhardtii">
+          Chlamydomonas reinhardtii
+        </option>
+        <option style="font-style: italic" value="cvariabilis">
+          Chlorella variabilis
+        </option>
+        <option style="font-style: italic" value="dmelanogaster">
+          Drosophila melanogaster
+        </option>
+        <option style="font-style: italic" value="gmax">Glycine max</option>
+        <option style="font-style: italic" value="iscapularis">
+          Ixodes scapularis
+        </option>
+        <option style="font-style: italic" value="lrohita">Labeo rohita</option>
+        <option style="font-style: italic" value="lmajor">
+          Leishmania major
+        </option>
+        <option style="font-style: italic" value="oniloticus">
+          Oreochromis niloticus
+        </option>
+        <option style="font-style: italic" value="osativa">Oryza sativa</option>
+        <option style="font-style: italic" value="postreatus">
+          Pleurotus ostreatus
+        </option>
+        <option style="font-style: italic" value="pumbilicalis">
+          Porphyra umbilicalis
+        </option>
+        <option style="font-style: italic" value="scerevisiae">
+          Saccharomyces cerevisiae
+        </option>
+        <option style="font-style: italic" value="smansoni">
+          Schistosoma mansoni
+        </option>
+        <option style="font-style: italic" value="spombe">
+          Schizosaccharomyces pombe
+        </option>
+        <option style="font-style: italic" value="tcruzi">
+          Trypanosoma cruzi CL Brener
+        </option>
+        <option style="font-style: italic" value="xtropicalis">
+          Xenopus tropicalis
+        </option>
+        <option style="font-style: italic" value="zmays">Zea mays</option>
+      </select>
+    </div>
+  </div>
+  <label class="form-inline" for="nreads">Number of Reads: </label>
+  <div class="mx-sm-3">
+    <select class="form-control form-control-sm" id="nreads" name="nreads">
+      <option selected>Choose...</option>
+      <option value="5">5 Mi</option>
+      <option value="12">12 Mi</option>
+      <option value="25">25 Mi</option>
+      <option value="50">50 Mi</option>
+      <option value="75">75 Mi</option>
+      <option value="100">100 Mi</option>
+      <option value="complete">All reads</option>
+    </select>
+  </div>
+</div>
+<br />
+
+<div class="form-inline" style="padding-left: 15px">
+  <label class="radio-inline" for="idtextarea"> TrinityID to seach: </label>
+  <div class="mx-sm-3">
+    <input class="form-control form-control-sm" id="idtextarea" />
+  </div>
+  <div class="mx-sm-3">
+    <button onclick="btnGetFeatureReport()" class="btn btn-secondary">
+      Go!
+    </button>
+  </div>
+</div>
+
+<script>
+  const params = new URLSearchParams(document.location.search);
+  const featureIDfull = params.get("query");
+
+  var featureID =
+    featureIDfull.split("_")[0] +
+    "_" +
+    featureIDfull.split("_")[1] +
+    "_" +
+    featureIDfull.split("_")[2] +
+    "_" +
+    featureIDfull.split("_")[3];
+
+  document.getElementById("idtextarea").value = featureID;
+</script>
+<br />
+<div class="form-inline">
+  <div class="plot_Heatmap">
+    <canvas id="plot_Heatmap" width="500" height="400"></canvas>
+  </div>
+  <div class="plot_LineT">
+    <canvas id="plot_LineT" width="400" height="400"></canvas>
+  </div>
+  <div class="plot_LineG">
+    <canvas id="plot_LineG" width="400" height="400"></canvas>
+  </div>
+</div>
+<div id="ORFtablediv">
+  <table id="ORFS" class="display">
+    <thead>
+      <tr>
+        <th>ORF ID</th>
+        <th>Transcript ID</th>
+        <th>Lenght</th>
+        <th>Strand</th>
+        <th>lend</th>
+        <th>rend</th>
+        <th>Peptide</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+<br />
+
+<div id="blastresults" class="form-inline">
+  <div class="form-group" style="padding-left: 15px">
+    <label class="form-inline" for="selectFeatureID"
+      >Select The Transcript for Blast individual data:
+    </label>
+    <div id="FeatureID" class="mx-sm-3">
+      <select
+        class="form-control form-control-sm"
+        id="selectFeatureID"
+        name="selectFeatureID"
+      ></select>
+    </div>
+    <div class="mx-sm-3">
+      <button class="btn btn-secondary" onclick="btnFetchBlast()">
+        Get Best Hit
+      </button>
+    </div>
+    <div class="mx-sm-3">
+      <button class="btn btn-secondary" onclick="btnFetchAllBlast()">
+        Get All Hits
+      </button>
+    </div>
+  </div>
+</div>
+
+<br />
+<div id="GenomeGraph">
+  <div class="plot_Genome">
+    <canvas id="plot_Genome" width="540" height="540"></canvas>
+  </div>
+</div>
+
+{% endblock %}

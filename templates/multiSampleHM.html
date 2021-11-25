@@ -1,0 +1,76 @@
+{% extends 'base.html' %} {%block head%}
+
+<!-- 2. Include script to initialize object -->
+{% endblock %} {%block body%}
+
+<div id="header">
+  <h3>Multi-Sample HeatMap</h3>
+  <div class="form-inline">
+    <div class="form-group">
+      <label class="form-inline" for="featureType">Feature Type: </label>
+      <div class="mx-sm-3">
+        <select
+          class="form-control form-control-sm"
+          id="featureType"
+          name="featureType"
+        >
+          <option selected>Choose...</option>
+          <option value="G">Genes</option>
+          <option value="T">Transcripts</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="form-inline">
+    <label class="radio-inline" for="minFC"> Minimum Fold Change Value: </label>
+    <div class="mx-sm-3">
+      <input class="form-control form-control-sm" id="minFC" placeholder="8" />
+    </div>
+  </div>
+  <br />
+  <div class="form-inline">
+    <label class="radio-inline" for="maxFDR"> Maximum FDR Value: </label>
+    <div class="mx-sm-3">
+      <input
+        class="form-control form-control-sm"
+        id="maxFDR"
+        placeholder="0.005"
+      />
+    </div>
+  </div>
+  <br />
+  <div class="form-inline">
+    <label class="radio-inline" for="xaxislimit">
+      Max Trinity ID to Show:
+    </label>
+    <div class="mx-sm-3">
+      <input
+        class="form-control form-control-sm"
+        id="xaxislimit"
+        placeholder="10"
+      />
+    </div>
+  </div>
+  <br />
+  <div class="form-inline">
+    <label class="radio-inline" for="accept">
+      Restrict to top most expressed:
+    </label>
+    <input class="form-control form-control-sm" type="checkbox" id="accept" />
+  </div>
+  <br />
+  <div class="form-inline">
+    <button onclick="btnHeatMapMultiSample()" class="btn btn-secondary">
+      Run!
+    </button>
+  </div>
+</div>
+<br />
+
+<div id="heatmapbox">
+  <div class="plot_heatmap">
+    <canvas id="canvasId" width="800" height="800"></canvas>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{%block head%}
+<title>Testing Functions</title>
+{% endblock %}
+
+{%block body%}
+
+<h3 id="header">Organisms reads data.</h3>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js" integrity="sha512-EbdJQSugx0nVWrtyK3JdQQ/03mS3Q1UiAhRtErbwl1YL/+e2hZdlIcSURxxh7WXHTzn83sjlh2rysACoJGfb6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.js" integrity="sha512-YxkN22rlXL1kQXIh4Py4u7O6BrxxuR0yKcnT3myFJGdibXfoSHPFBs9ap8Xowi25YRwHv38DoLf2T6nAc5w/Cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script> 
+
+$(function() {
+      Papa.parse("databases/organisms_data.csv", {
+          download: true,
+          complete: function(organisms_data) {
+          $(document).ready(function () {
+              $('#samples_data').DataTable({
+                  data: organisms_data.data,
+                  dataSrc:"",
+                  scrollX: true,
+                  fnRowCallback: function (nRow, aData, iDisplayIndex) {
+                    $("td:eq(10)", nRow).html(
+                    '<a href="https://www.ncbi.nlm.nih.gov/bioproject/' +
+                        aData[10] +
+                        '">' +
+                        aData[10] +
+                        "</a>"
+                    );
+                    return nRow;
+                },
+              });
+          });
+          }
+      });
+  });
+
+$(function() {
+      Papa.parse("databases/trinity_report.csv", {
+          download: true,
+          complete: function(trinity_report) {
+          $(document).ready(function () {
+              $('#trinityreport').DataTable({
+                  data: trinity_report.data,
+                  dataSrc:"",
+                  scrollX: true,
+              });
+          });
+          }
+      });
+  });
+</script>
+<table id="samples_data" class="display">
+        <thead>
+            <tr>
+                <th>Organism</th>
+                <th>Sequencer</th>
+                <th>Strategy</th>
+                <th>Source</th>
+                <th>Selection</th>
+                <th>Layout</th>
+                <th>Size (bp)</th>
+                <th>Total Reads</th>
+                <th>Uniprot Proteins</th>
+                <th>Sample Type</th>
+                <th>Bioproject Accession</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+</table>
+<br>
+<h3 id="header">Trinity Report data for all organisms.</h3>
+<table id="trinityreport" class="display">
+        <thead>
+            <tr>
+                <th rowspan="2">Specie</th>
+                <th rowspan="2">Number of Reads</th>
+                <th colspan="3">Counts of transcripts, etc.</th>
+                <th colspan="8">Stats based on ALL transcript contigs</th>
+                <th colspan="8">Stats based on ONLY LONGEST ISOFORM per 'GENE'</th>
+            </tr>
+            <tr>
+                <th>Total trinity 'genes'</th>
+                <th>Total trinity transcripts</th>
+                <th>Percent GC</th>
+                <th>Contig N10</th>
+                <th>Contig N20</th>
+                <th>Contig N30</th>
+                <th>Contig N40</th>
+                <th>Contig N50</th>
+                <th>Median contig length</th>
+                <th>Average contig</th>
+                <th>Total assembled bases</th>
+                <th>Contig N10</th>
+                <th>Contig N20</th>
+                <th>Contig N30</th>
+                <th>Contig N40</th>
+                <th>Contig N50</th>
+                <th>Median contig length</th>
+                <th>Average contig</th>
+                <th>Total assembled bases</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+</table>
+{% endblock %}

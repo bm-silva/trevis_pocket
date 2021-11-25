@@ -1,0 +1,67 @@
+{% extends 'base.html' %} {%block head%}
+<title>Getting Transcripts Annotations</title>
+{% endblock %} {%block body%}
+
+<div id="header">
+  <h3>Get some Blast Results</h3>
+  <br />
+  <div class="form-inline">
+    <label class="radio-inline" for="blasttextarea">
+      Type text to seach:
+    </label>
+    <div class="mx-sm-3">
+      <input
+        class="form-control form-control-sm"
+        id="blasttextarea"
+        placeholder="Exemple: TRINITY_DN1001_c0_g1"
+      />
+    </div>
+    <div class="form-group">
+      <label class="form-inline" for="searchType_selection"
+        >Search Type:
+      </label>
+      <div class="mx-sm-3">
+        <select
+          class="form-control form-control-sm"
+          id="searchType_selection"
+          name="searchType"
+        >
+          <option selected>Choose...</option>
+          <option value="TrinityID">Trinity ID</option>
+          <option value="AccessionID">UniprotKB ID</option>
+        </select>
+      </div>
+      <div class="mx-sm-3">
+        <button onclick="btnBlastResults()" class="btn btn-secondary">
+          Search!
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<br />
+<div id="divgetBlastResults">
+  <table id="getBlastResults" class="display">
+    <thead>
+      <tr>
+        <th>Trinity ID</th>
+        <th>UniprotKB-ID</th>
+        <th>Query Start</th>
+        <th>Query End</th>
+        <th>Query Coverage (%)</th>
+        <th>Hit Start</th>
+        <th>Hit End</th>
+        <th>Hit Coverage (%)</th>
+        <th>Identity (%)</th>
+        <th>E-Value</th>
+        <th>BitScore</th>
+        <th>Database</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <br />
+</div>
+<br />
+{% endblock %}

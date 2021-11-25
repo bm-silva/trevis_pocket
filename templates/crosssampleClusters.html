@@ -1,0 +1,123 @@
+{% extends 'base.html' %} {%block head%}
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+{% endblock %} {%block body%}
+<br />
+
+<script>
+  $(function () {
+    $("#Clusters_available").DataTable({
+      ///api/database/crosssample/clusters/info
+      sAjaxSource: "/api/database/crosssample/clusters/info",
+      destroy: true,
+      sAjaxDataProp: "",
+    });
+
+    fetch("/api/database/crosssample/clusters/info")
+      .then(function (response) {
+        removeOptions(document.getElementById("selectClusterID"));
+        removeOptions(document.getElementById("selectClusterNumber"));
+        var contentType = response.headers.get("content-type");
+        if (contentType && contentType.indexOf("application/json") !== -1) {
+          return response.json().then(function (json) {
+            // process the JSON
+            for (var i = 0, len = Object.keys(json).length; i < len; i++) {
+              get_divA = document.getElementById("selectClusterID");
+              new_option = document.createElement("option");
+              new_option_sampleNAME = document.createTextNode(json[i][0]);
+              new_option.setAttribute("value", json[i][0]);
+              new_option.appendChild(new_option_sampleNAME);
+              get_divA.appendChild(new_option);
+              get_divB = document.getElementById("selectClusterNumber");
+              new_option = document.createElement("option");
+              new_option_sampleNAME = document.createTextNode(json[i][1]);
+              new_option.setAttribute("value", json[i][1]);
+              new_option.appendChild(new_option_sampleNAME);
+              get_divB.appendChild(new_option);
+            }
+          });
+        }
+      })
+      .then(function () {
+        // para poder deixar somente uma opcao e repetir as entradas
+        var usedNames = {};
+        $("select[name='selectClusterID'] > option").each(function () {
+          if (usedNames[this.text]) {
+            $(this).remove();
+          } else {
+            usedNames[this.text] = this.value;
+          }
+        });
+      })
+      .then(function () {
+        var usedNames = {};
+        $("select[name='selectClusterNumber'] > option").each(function () {
+          if (usedNames[this.text]) {
+            $(this).remove();
+          } else {
+            usedNames[this.text] = this.value;
+          }
+        });
+      });
+  });
+</script>
+
+<div id="parameters_data">
+  <table id="Clusters_available" class="display">
+    <thead>
+      <tr>
+        <th>Cluster ID</th>
+        <th>Cluster Number</th>
+        <th>Group Name</th>
+        <th>Analysis Name</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <br />
+  <div id="header">
+    <div id="cluster_selection" class="form-inline">
+      <div class="form-group">
+        <label class="ClusterID" for="ClusterID">Select Cluster ID: </label>
+        <div id="ClusterID" class="mx-sm-3">
+          <select
+            class="form-control form-control-sm"
+            id="selectClusterID"
+            name="selectClusterID"
+          ></select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="ClusterNumber" for="ClusterNumber"
+          >Select Cluster Number::
+        </label>
+        <div id="ClusterNumber" class="mx-sm-3">
+          <select
+            class="form-control form-control-sm"
+            id="selectClusterNumber"
+            name="selectClusterNumber"
+          ></select>
+        </div>
+      </div>
+      <br />
+      <button
+        class="btn btn-secondary"
+        onclick="btnLineGraph(); btnHeatmapGraph();"
+      >
+        Run!
+      </button>
+    </div>
+  </div>
+
+  <br />
+  <div id="LineAndHeatmap">
+    <div id="plots" class="form-inline">
+      <div class="plot_Line">
+        <canvas id="plot_Line" width="540" height="540"></canvas>
+      </div>
+      <div class="plot_Heatmap">
+        <canvas id="plot_Heatmap" width="900" height="540"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

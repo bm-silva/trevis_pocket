@@ -1,0 +1,141 @@
+{% extends 'base.html' %} {%block head%}
+<title>Getting Transcripts Annotations</title>
+{% endblock %} {%block body%}
+
+<div id="header">
+  <h3>Run Diamond BlastP and BlastX against the transcripts!</h3>
+  <br />
+
+  <div class="form-inline">
+    <div class="form-group">
+      <label class="form-inline" for="species">Species: </label>
+      <div class="mx-sm-3">
+        <select
+          class="form-control form-control-sm"
+          id="species"
+          name="species"
+        >
+          <option selected>Choose...</option>
+          <option style="font-style: italic" value="aaegypti">
+            Aedes aegypti
+          </option>
+          <option style="font-style: italic" value="amellifera">
+            Apis mellifera
+          </option>
+          <option style="font-style: italic" value="athaliana">
+            Arabidopsis thaliana
+          </option>
+          <option style="font-style: italic" value="creinhardtii">
+            Chlamydomonas reinhardtii
+          </option>
+          <option style="font-style: italic" value="cvariabilis">
+            Chlorella variabilis
+          </option>
+          <option style="font-style: italic" value="dmelanogaster">
+            Drosophila melanogaster
+          </option>
+          <option style="font-style: italic" value="gmax">Glycine max</option>
+          <option style="font-style: italic" value="iscapularis">
+            Ixodes scapularis
+          </option>
+          <option style="font-style: italic" value="lrohita">
+            Labeo rohita
+          </option>
+          <option style="font-style: italic" value="lmajor">
+            Leishmania major
+          </option>
+          <option style="font-style: italic" value="oniloticus">
+            Oreochromis niloticus
+          </option>
+          <option style="font-style: italic" value="osativa">
+            Oryza sativa
+          </option>
+          <option style="font-style: italic" value="postreatus">
+            Pleurotus ostreatus
+          </option>
+          <option style="font-style: italic" value="pumbilicalis">
+            Porphyra umbilicalis
+          </option>
+          <option style="font-style: italic" value="scerevisiae">
+            Saccharomyces cerevisiae
+          </option>
+          <option style="font-style: italic" value="smansoni">
+            Schistosoma mansoni
+          </option>
+          <option style="font-style: italic" value="spombe">
+            Schizosaccharomyces pombe
+          </option>
+          <option style="font-style: italic" value="tcruzi">
+            Trypanosoma cruzi CL Brener
+          </option>
+          <option style="font-style: italic" value="xtropicalis">
+            Xenopus tropicalis
+          </option>
+          <option style="font-style: italic" value="zmays">Zea mays</option>
+        </select>
+      </div>
+    </div>
+    <label class="form-inline" for="nreads">Number of Reads: </label>
+    <div class="mx-sm-3">
+      <select class="form-control form-control-sm" id="nreads" name="nreads">
+        <option selected>Choose...</option>
+        <option value="5">5 Mi</option>
+        <option value="12">12 Mi</option>
+        <option value="25">25 Mi</option>
+        <option value="50">50 Mi</option>
+        <option value="75">75 Mi</option>
+        <option value="100">100 Mi</option>
+        <option value="complete">All reads</option>
+      </select>
+    </div>
+  </div>
+  <br />
+  <div class="form-inline">
+    <label class="radio-inline" for="querytextarea">
+      Type text to seach:
+    </label>
+    <div class="mx-sm-3">
+      <input
+        class="form-control form-control-sm"
+        id="querytextarea"
+        placeholder="Enter AA or NT sequence"
+      />
+    </div>
+    <label class="form-inline" for="method">Method: </label>
+    <div id="method_selection" class="mx-sm-3">
+      <select class="form-control form-control-sm" id="method" name="method">
+        <option selected>Choose...</option>
+        <option value="BlastP">BlastP</option>
+        <option value="BlastX">BlastX</option>
+      </select>
+    </div>
+    <button class="btn btn-secondary" onclick="btnDiamondBlast()">
+      Click Me!
+    </button>
+  </div>
+</div>
+<br />
+<div id="divdiamondBlast">
+  <h5>Diamond Results</h5>
+  <table id="diamondBlast" class="display">
+    <thead>
+      <tr>
+        <th>Trinity ID</th>
+        <th>Query Lenght</th>
+        <th>Trinity ID Lenght</th>
+        <th>Query Start</th>
+        <th>Query End</th>
+        <th>Hit Start</th>
+        <th>Hit End</th>
+        <th>Identity (%)</th>
+        <th>Query Coverage (%)</th>
+        <th>Hit Coverage (%)</th>
+        <th>E-Value</th>
+        <th>BitScore</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+<br />
+{% endblock %}

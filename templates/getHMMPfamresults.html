@@ -1,0 +1,66 @@
+{% extends 'base.html' %} {%block head%}
+<title>Getting Transcripts Annotations</title>
+{% endblock %} {%block body%}
+<!-- <h3>Get HMMER and PFAM results from TrinityID</h3>
+<textarea id="trinityidtextarea"></textarea>
+<button onclick="btnGetHMMPFAMresults()">Click Me!</button> -->
+
+<div id="header">
+  <h3>Get HMMER and PFAM results from TrinityID</h3>
+  <br />
+  <div class="form-inline">
+    <label class="radio-inline" for="trinityidtextarea">
+      Type TrinityID:
+    </label>
+    <div class="mx-sm-3">
+      <input
+        class="form-control form-control-sm"
+        id="trinityidtextarea"
+        placeholder="Exemple: TRINITY_DN1001_c0_g1"
+      />
+    </div>
+    <div class="mx-sm-3">
+      <button onclick="btnGetHMMPFAMresults()" class="btn btn-secondary">
+        Search!
+      </button>
+    </div>
+  </div>
+  <br />
+  <div>OR</div>
+  <br />
+  <div class="form-inline">
+    <label class="radio-inline" for="pfamidtextarea">
+      Type Pfam Accession:
+    </label>
+    <div class="mx-sm-3">
+      <input
+        class="form-control form-control-sm"
+        id="pfamidtextarea"
+        placeholder="Exemple: PF03151"
+      />
+    </div>
+    <div class="mx-sm-3">
+      <button onclick="btnGetPfam()" class="btn btn-secondary">Search!</button>
+    </div>
+  </div>
+</div>
+
+<div id="divgetHMMPFAMresults">
+  <table id="getHMMPFAMresults" class="display">
+    <thead>
+      <tr>
+        <th>Query ID</th>
+        <th>Query Start Align</th>
+        <th>Query End Align</th>
+        <th>PFAM Start Align</th>
+        <th>PFAM End Align</th>
+        <th>PFAM Accession</th>
+        <th>PFAM Name</th>
+        <th>PFAM Description</th>
+        <th>PFAM e-value</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+{% endblock %}

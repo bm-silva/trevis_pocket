@@ -1,0 +1,288 @@
+#getIDlinks {
+  display: none;
+}
+
+#crossSamples_available_wrapper {
+  width: 600px;
+}
+
+#crossSamples_available {
+  width: 600px;
+}
+
+#fetchID_wrapper {
+  margin: 15px;
+  border-style: solid;
+  border-width: thin;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+}
+
+#trinityreport_wrapper {
+  margin: 15px;
+  border-style: solid;
+  border-width: thin;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+}
+
+#samples_data_wrapper {
+  margin: 15px;
+  border-style: solid;
+  border-width: thin;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+}
+
+#divFetchID {
+  display: none;
+}
+
+#header {
+  padding-left: 15px;
+}
+
+#blastresults {
+  padding-left: 15px;
+  display: none;
+}
+
+#blastresults_cp {
+  padding-left: 15px;
+  display: none;
+}
+
+#ORFtablediv {
+  padding-left: 15px;
+  display: none;
+}
+
+#samples {
+  padding-left: 15px;
+}
+
+#getannotations_wrapper {
+  margin: 15px;
+  border-style: solid;
+  border-width: thin;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+}
+
+#divgetannotations {
+  display: none;
+}
+
+#getBlastResults_wrapper {
+  margin: 15px;
+  border-style: solid;
+  border-width: thin;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+}
+
+#divgetBlastResults {
+  display: none;
+}
+
+#getBlastResults_cp_wrapper {
+  margin: 15px;
+  border-style: solid;
+  border-width: thin;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+}
+
+#divgetBlastResults_cp {
+  display: none;
+}
+
+#tableheader1 {
+  display: none;
+}
+
+#tableheader1 > h5 {
+  padding-left: 15px;
+}
+
+#tableheader2 {
+  display: none;
+}
+
+#tableheader2 > h5 {
+  padding-left: 15px;
+}
+
+#getBlastPProtResults_wrapper {
+  margin: 15px;
+  border-style: solid;
+  border-width: thin;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+}
+
+#divgetBlastPProtResults {
+  display: none;
+}
+
+#blasttextarea {
+  width: 217px;
+}
+
+#tableheader3 {
+  display: none;
+}
+
+#tableheader3 > h5 {
+  padding-left: 15px;
+}
+
+#getBlastXProtResults_wrapper {
+  margin: 15px;
+  border-style: solid;
+  border-width: thin;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+}
+
+#divgetBlastXProtResults {
+  display: none;
+}
+
+#trinityidtextarea {
+  width: 217px;
+}
+
+#getHMMPFAMresults_wrapper {
+  margin: 15px;
+  border-style: solid;
+  border-width: thin;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+}
+
+#divgetHMMPFAMresults {
+  display: none;
+}
+
+#accept {
+  margin-left: 10px;
+}
+#minFC {
+  width: 37px;
+}
+
+#maxFDR {
+  width: 47px;
+}
+
+#xaxislimit {
+  width: 37px;
+}
+
+#CanvasXpress-ParentNode-canvasId {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+#crossSamples_available_wrapper {
+  margin: 15px;
+  border-style: solid;
+  border-width: thin;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+}
+
+#CanvasXpress-ParentNode-plot_MA {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+#CanvasXpress-ParentNode-plot_volcano {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+#CanvasXpress-ParentNode-plot_Heatmap {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+#Clusters_available_wrapper {
+  margin: 15px;
+  border-style: solid;
+  border-width: thin;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  width: 800px;
+}
+
+#CanvasXpress-ParentNode-plot_Line {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+#diamondBlast_wrapper {
+  margin: 15px;
+  border-style: solid;
+  border-width: thin;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+}
+
+#divdiamondBlast {
+  display: none;
+}
+
+#divdiamondBlast > h5 {
+  padding-left: 15px;
+}
+
+#ORFS_wrapper {
+  margin: 15px;
+  border-style: solid;
+  border-width: thin;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+}
+
+#CanvasXpress-ParentNode-plot_LineT {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+#CanvasXpress-ParentNode-plot_LineG {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+#CanvasXpress-ParentNode-plot_Genome {
+  margin-left: 15px;
+  margin-right: 0px;
+}

@@ -1,0 +1,182 @@
+{% extends 'base.html' %} {%block head%}
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+{% endblock %} {%block body%}
+<br />
+
+<script>
+  $(function () {
+    $("#crossSamples_available").DataTable({
+      sAjaxSource: "/api/database/info/samples",
+      destroy: true,
+      sAjaxDataProp: "",
+    });
+
+    fetch("/api/database/info/samples")
+      .then(function (response) {
+        removeOptions(document.getElementById("selectSampleA"));
+        removeOptions(document.getElementById("selectSampleB"));
+        var contentType = response.headers.get("content-type");
+        if (contentType && contentType.indexOf("application/json") !== -1) {
+          return response.json().then(function (json) {
+            // process the JSON
+            for (var i = 0, len = Object.keys(json).length; i < len; i++) {
+              get_divA = document.getElementById("selectSampleA");
+              new_option = document.createElement("option");
+              new_option_sampleNAME = document.createTextNode(json[i][0]);
+              new_option.setAttribute("value", json[i][0]);
+              new_option.appendChild(new_option_sampleNAME);
+              get_divA.appendChild(new_option);
+              get_divB = document.getElementById("selectSampleB");
+              new_option = document.createElement("option");
+              new_option_sampleNAME = document.createTextNode(json[i][1]);
+              new_option.setAttribute("value", json[i][1]);
+              new_option.appendChild(new_option_sampleNAME);
+              get_divB.appendChild(new_option);
+            }
+          });
+        }
+      })
+      .then(function () {
+        // para poder deixar somente uma opcao e repetir as entradas
+        var usedNames = {};
+        $("select[name='selectSampleA'] > option").each(function () {
+          if (usedNames[this.text]) {
+            $(this).remove();
+          } else {
+            usedNames[this.text] = this.value;
+          }
+        });
+      })
+      .then(function () {
+        var usedNames = {};
+        $("select[name='selectSampleB'] > option").each(function () {
+          if (usedNames[this.text]) {
+            $(this).remove();
+          } else {
+            usedNames[this.text] = this.value;
+          }
+        });
+      });
+  });
+</script>
+
+<div id="parameters_data">
+  <table id="crossSamples_available" class="display">
+    <thead>
+      <tr>
+        <th>Sample A</th>
+        <th>Sample B</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <br />
+  <div id="samples">
+    <h5>Select Samples:</h5>
+    <br />
+    <div class="form-inline">
+      <label for="samples" title="Sample A Selection">Select Sample A: </label>
+      <div id="SampleA" class="mx-sm-3">
+        <select id="selectSampleA" name="selectSampleA"></select>
+      </div>
+      <label for="samples" title="Sample B Selection">Select Sample B: </label>
+      <div id="SampleB" class="mx-sm-3">
+        <select id="selectSampleB" name="selectSampleB"></select>
+      </div>
+    </div>
+  </div>
+
+  <br />
+
+  <div id="header">
+    <h5>HeatMap parameters</h5>
+    <br />
+    <div class="form-inline">
+      <div class="form-group">
+        <label class="form-inline" for="featureType">Feature Type: </label>
+        <div class="mx-sm-3">
+          <select
+            class="form-control form-control-sm"
+            id="featureType"
+            name="featureType"
+          >
+            <option selected>Choose...</option>
+            <option value="G">Genes</option>
+            <option value="T">Transcripts</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="form-inline">
+      <label class="radio-inline" for="minFC">
+        Minimum Fold Change Value:
+      </label>
+      <div class="mx-sm-3">
+        <input
+          class="form-control form-control-sm"
+          id="minFC"
+          placeholder="8"
+        />
+      </div>
+    </div>
+    <br />
+    <div class="form-inline">
+      <label class="radio-inline" for="maxFDR"> Maximum FDR Value: </label>
+      <div class="mx-sm-3">
+        <input
+          class="form-control form-control-sm"
+          id="maxFDR"
+          placeholder="0.005"
+        />
+      </div>
+    </div>
+    <br />
+    <div class="form-inline">
+      <label class="radio-inline" for="xaxislimit">
+        Max Trinity ID to Show:
+      </label>
+      <div class="mx-sm-3">
+        <input
+          class="form-control form-control-sm"
+          id="xaxislimit"
+          placeholder="10"
+        />
+      </div>
+    </div>
+    <br />
+    <div class="form-inline">
+      <label class="radio-inline" for="accept">
+        Restrict to top most expressed:
+      </label>
+      <input class="form-control form-control-sm" type="checkbox" id="accept" />
+    </div>
+    <br />
+    <div class="form-inline">
+      <button
+        onclick="btnMA(); btnVolcano(); btnHeatmap();"
+        class="btn btn-secondary"
+      >
+        Run!
+      </button>
+    </div>
+  </div>
+  <br />
+
+  <div id="MAnVolcano">
+    <div id="dispersionplots" class="form-inline">
+      <div class="plot_MA">
+        <canvas id="plot_MA" width="540" height="540"></canvas>
+      </div>
+      <br />
+      <div class="plot_volcano">
+        <canvas id="plot_volcano" width="540" height="540"></canvas>
+      </div>
+    </div>
+    <br />
+    <div class="plot_Heatmap">
+      <canvas id="plot_Heatmap" width="540" height="540"></canvas>
+    </div>
+  </div>
+</div>
+{% endblock %}
