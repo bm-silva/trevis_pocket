@@ -73,7 +73,7 @@ def run_trevis():
     
 if __name__ == '__main__':
     os.system('cp /sqlite/* .')
-    if arguments.exemple:
+    if arguments.example:
         path = 'files_example'
     else:
         path = 'files'
