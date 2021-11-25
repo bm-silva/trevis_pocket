@@ -16,7 +16,7 @@ DATABASE = 'Trinotate.sqlite'
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('getannotations.html')
 
 @app.route('/fetchID')
 def function_fetchID():
