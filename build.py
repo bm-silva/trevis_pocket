@@ -16,7 +16,7 @@ def run_trevis():
     cmd = f"Trinotate Trinotate.sqlite LOAD_pfam {path}/TrinotatePFAM.out"
     os.system(cmd)
     # create a custom table for Blast results
-    cmd = f"sqlite3 Trinotate.sqlite 'DROP TABLE IF EXISTS BlastDbase' \
+    cmd = "sqlite3 Trinotate.sqlite 'DROP TABLE IF EXISTS BlastDbase' \
         'CREATE TABLE BlastDbase(TrinityID TEXT, FullAccession TEXT,GINumber TEXT, UniprotSearchString TEXT, QueryStart REAL, QueryEnd REAL, QueryCoverage REAL, HitStart REAL,HitEnd REAL, HitLenght REAL, HitCoverage REAL, PercentIdentity REAL,Evalue REAL,BitScore REAL, Lenght REAL, Frame REAL, DatabaseSource)'"
     os.system(cmd)
     # load blastp results
@@ -37,10 +37,10 @@ def run_trevis():
         -d Trinotate.sqlite -f {path}/Trinity.fasta.gene_trans_map"
     os.system(cmd)
     # edit the report file
-    cmd = f"python3 scripts/prepare_file.py \
+    cmd = "python3 scripts/prepare_file.py \
         -f trinotate_annotation.xls -o trinotate_annotation_limpo.xls"
     # import the report file to the annotation column
-    cmd = f"import_transcript_names.pl Trinotate.sqlite trinotate_annotation_limpo.xls"
+    cmd = "import_transcript_names.pl Trinotate.sqlite trinotate_annotation_limpo.xls"
     os.system(cmd)
     # import isoform transcript clusters
     cmd = f"import_transcript_clusters.pl \
