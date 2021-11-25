@@ -77,3 +77,4 @@ if __name__ == '__main__':
         path = 'files_example'
     else:
         path = 'files'
+    run_trevis()
