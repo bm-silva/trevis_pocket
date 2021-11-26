@@ -1,5 +1,5 @@
 # A Tool for Transcriptome REsults VISualization (TREVIS)
-## Files Needed
+## Required Files
 
 This tool is based and inspired by [Trinotate](https://github.com/Trinotate/Trinotate.github.io/wiki). You can find all files here described in their wiki page.
 To be able to use this tool, you first need to run your Trinity assembly and run your favorite package for transcript/gene count and abundance estimation (Salmon, Kallisto, RSEM). After that, the statitical calculation and data gathering must be made with Trinity edgeR tool. Unfortunately, this first first version only supports edgeR files output.
