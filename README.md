@@ -50,11 +50,17 @@ In the `files_example` directory you can find all files needed to run the exampl
 
 ## How to Run
 
+To run this tool you'll need to install [Docker](https://www.docker.com/). I created a [Docker Image](https://hub.docker.com/repository/docker/brunomsilva/dockdocker) to preprare the database and run the Flask microframework.
+
+First, clone the repository:
+
 * `git clone https://github.com/bm-silva/trevis_pocket.git`
 
 Change the directory to **trevis_pocket**:
 
 * `cd trevis_pocket`
+
+Create a `files` folder, with this exactly name, and put all needed files inside.
 
 Build your data:
 
