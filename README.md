@@ -39,6 +39,14 @@ You can follow our pipeline here. You can find more information about below scri
 * Run `TransDecoder.LongOrfs` and `TransDecoder.Predict` for ORF prediction;
 * Then, run the `hmmsearch`, `blastp` and `blastx` for the annotation report.
 
+In the `files_example` directory you can find all files needed to run the example page of this tool. In the end, you'll find the following files:
+
+* Trinity.fasta - The assembled transcripts;
+* Trinity.fasta.gene_trans_map - Transcript to gene map, also created by Trinity;
+* Trinity.fasta.transdecoder.pep - TransDecoder output;
+* TrinotatePFAM.out, blastp.outfmt6, blastx.outfmt6 - HMMER and Blast result;
+* samples.txt - Samples/Replicaticates descriptions;
+* A directory for the Isoforms and Genes Differential Expression data by edgeR - Remember: (1) the clusters analysis files must end with `.matrix`; (2) your `run_DE_analysis.pl` output must be named `Trinity_trans.gene.counts.matrix` or `Trinity_trans.gene.TMM.EXPR.matrix`. (3) your cross-sample DE data must end with `.DE_results`.
 
 ## How to Run
 
