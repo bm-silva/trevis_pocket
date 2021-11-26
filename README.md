@@ -32,7 +32,7 @@ SampleB ReplicateB
 You can follow our pipeline here. You can find more information about below scripts [here](https://github.com/Trinotate/Trinotate.github.io/wiki/Software-installation-and-data-required). As a fast summary, you need to run the following Trinity scripts, after the assembly is complete:
 
 * Run `align_and_estimate_abundance.pl` for each replicate and with your desired `--est_method`;
-* Run `abundance_estimates_to_matrix.pl` - Remember to name the parent folder same as in the `samples.txt` file. Also, the columns of the `.counts.matrix` must be the same in the `samples.txt`;
+* Run `abundance_estimates_to_matrix.pl` - Remember to name the parent folder same as in the `samples.txt` file. Also, the columns of the `.counts.matrix` must be the same as in the `samples.txt`;
 * Run `run_DE_analysis.pl` in the `Trinity_trans.isoform.counts.matrix` and `Trinity_trans.gene.counts.matrix` - Set the output in two different directories (see `files_examples`);
 * For each isoform and gene directory, run `analyze_diff_expr.pl`;
 * For each isoform and gene directory, run `define_clusters_by_cutting_tree.pl`
