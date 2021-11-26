@@ -50,7 +50,7 @@ In the `files_example` directory you can find all files needed to run the exampl
 
 ## How to Run
 
-To run this tool you'll need to install [Docker](https://www.docker.com/). I created a [Docker Image](https://hub.docker.com/repository/docker/brunomsilva/dockdocker) to preprare the database and run the Flask microframework.
+To run this tool you'll need to install [Docker](https://www.docker.com/). I created a [Docker Image](https://hub.docker.com/repository/docker/brunomsilva/trevis_pocket) to preprare the database and run the Flask microframework.
 
 First, clone the repository:
 
